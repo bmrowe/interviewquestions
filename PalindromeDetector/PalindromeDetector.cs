@@ -10,10 +10,9 @@ namespace palindromedetector
         public string FindLongestPalindrome(string text)
         {
             var longestPalindrome = string.Empty;
-
             var startIndex = 0;
            
-            while(startIndex < text.Length-1)
+            while(startIndex < text.Length - 1)
             {
                 var endIndex = text.Length;
                 
@@ -22,7 +21,7 @@ namespace palindromedetector
                     var substring = text.Substring(startIndex, endIndex - startIndex);
                     endIndex--;
 
-                    if(StringStartsAndEndsWithLetter(substring) && substring.Length > longestPalindrome.Length && IsPalindrome(substring))                                                              
+                    if(substring.Length > longestPalindrome.Length && StringStartsAndEndsWithLetter(substring) && IsPalindrome(substring))                                                              
                     {
                         longestPalindrome = substring;
                     }
