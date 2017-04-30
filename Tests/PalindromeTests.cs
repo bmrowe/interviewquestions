@@ -24,5 +24,17 @@ namespace palindromedetectortests
             Assert.Equal("a man a plan a canal panama", result);
         }
 
+        [Fact]
+        public void DetectorFindsPalindromeFilledWithSymbols()
+        {
+            var detector = new PalindromeDetector();
+            var text = "dasjha, man  a; pl&an /a ca$n$al ..pa;!nam+asad";
+
+            var result = detector.FindLongestPalindrome(text);
+
+            Assert.Equal("a, man  a; pl&an /a ca$n$al ..pa;!nam+a", result);
+
+        }
+
     }
 }
