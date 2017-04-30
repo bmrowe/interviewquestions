@@ -19,7 +19,7 @@ namespace palindromedetectortests
             var detector = new PalindromeDetector();
             var text = "Have you heard the phrase a man a plan a canal panama?";
 
-            var result = detector.FindLongestPalindromeInText(text);
+            var result = detector.FindLongestPalindrome(text);
 
             Assert.Equal("a man a plan a canal panama", result);
         }
