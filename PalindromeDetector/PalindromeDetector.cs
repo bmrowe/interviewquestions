@@ -22,8 +22,7 @@ namespace palindromedetector
                     var substring = text.Substring(startIndex, endIndex - startIndex);
                     endIndex--;
 
-                    if(StringStartsAndEndsWithLetter(substring) && IsPalindrome(substring) 
-                                                               && substring.Length > longestPalindrome.Length)
+                    if(StringStartsAndEndsWithLetter(substring) && substring.Length > longestPalindrome.Length && IsPalindrome(substring))                                                              
                     {
                         longestPalindrome = substring;
                     }
