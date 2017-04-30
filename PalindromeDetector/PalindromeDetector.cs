@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace palindromedetector
 {
     public class PalindromeDetector
     {
-        
         public string FindLongestPalindrome(string text)
         {
             var longestPalindrome = string.Empty;
@@ -22,9 +22,8 @@ namespace palindromedetector
                     var substring = text.Substring(startIndex, endIndex - startIndex);
                     endIndex--;
 
-                    if(!StringStartsOrEndsNonLetter(substring) 
-                        && IsPalindrome(substring) 
-                        && substring.Length > longestPalindrome.Length)
+                    if(StringStartsAndEndsWithLetter(substring) && IsPalindrome(substring) 
+                                                               && substring.Length > longestPalindrome.Length)
                     {
                         longestPalindrome = substring;
                     }
@@ -38,11 +37,7 @@ namespace palindromedetector
         public bool IsPalindrome(string textToCheck)
         {
             textToCheck = textToCheck.ToLower();
-            textToCheck = textToCheck.Replace(".", "").Replace("?", "")
-                                     .Replace("!", "").Replace(",", "")
-                                     .Replace(" ", "").Replace(",", "")
-                                     .Replace(";", "").Replace(":", "")
-                                     .Replace("'", "");
+            textToCheck = RemoveSymbolsFromString(textToCheck);
 
             var characterArray = textToCheck.ToCharArray();
             Array.Reverse(characterArray);
@@ -51,12 +46,21 @@ namespace palindromedetector
             return string.Equals(textToCheck, reversedText);
         }
 
-        
-        private bool StringStartsOrEndsNonLetter(string text)
+        private string RemoveSymbolsFromString(string text)
         {
-            var symbols = new List<string>(){".", "?", "!", ",", " ", ",", ";", ":", "'"};
-
-            return symbols.Contains(text[0].ToString()) || symbols.Contains(text[text.Length - 1].ToString());
+            var stringBuilder = new StringBuilder();
+            foreach(var character in text)
+            {
+                if(Char.IsLetter(character)){
+                    stringBuilder.Append(character);
+                }
+            }
+            return stringBuilder.ToString();
+        }
+        
+        private bool StringStartsAndEndsWithLetter(string text)
+        {
+            return Char.IsLetter(text[0]) && Char.IsLetter(text[text.Length - 1]);
         }
     }
 }
